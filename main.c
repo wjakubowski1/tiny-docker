@@ -56,5 +56,12 @@ int main() {
     exit(EXIT_FAILURE);
   }
 
+  // parent waits for the container process to exit
+  waitpid(pid, NULL, 0);
+
+  // cleans up allocated memory
+  free(stack);
+  printf("Container exited cleanly. Back on host.\n");
+
   return 0;
 }
