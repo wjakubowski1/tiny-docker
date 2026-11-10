@@ -44,5 +44,9 @@ int main() {
   // so it must point clone() to the TOP (end) of the allocated memory block
   char *stack_top = stack + STACK_SIZE;
 
+  // flags to isolate Hostname (UTS) and Process IDs (PID)
+  // SIGCHLD tells the kernel to notify the parent when the child finishes (so waitpid works)
+  int flags = CLONE_NEWUTS | CLONE_NEWPID | SIGCHLD;
+
   return 0;
 }
