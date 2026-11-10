@@ -12,6 +12,13 @@
 int child_fn(void *arg) {
   printf("Container process started! My isolated PID: %d\n", getpid());
 
+  // changes the hostname inside the isolated UTS namespace
+  const char *new_hostname = "tiny-container";
+  if (sethostname(new_hostname, strlen(new_hostname)) != 0) {
+    perror("sethostname failed");
+    return EXIT_FAILURE;
+  }
+
   // if execvp returns, something went wrong
   perror("execvp failed");
   return EXIT_FAILURE;
