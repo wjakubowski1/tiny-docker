@@ -19,6 +19,9 @@ int child_fn(void *arg) {
     return EXIT_FAILURE;
   }
 
+  // prepares arguments to launch a basic shell inside the container
+  char *args[] = {"/bin/sh", NULL};
+
   // if execvp returns, something went wrong
   perror("execvp failed");
   return EXIT_FAILURE;
