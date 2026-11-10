@@ -48,5 +48,13 @@ int main() {
   // SIGCHLD tells the kernel to notify the parent when the child finishes (so waitpid works)
   int flags = CLONE_NEWUTS | CLONE_NEWPID | SIGCHLD;
 
+  // spawns the isolated child process
+  pid_t pid = clone(child_fn, stack_top, flags, NULL);
+  if (pid == -1) {
+    perror("clone failed (Did you run with sudo?)");
+    free(stack);
+    exit(EXIT_FAILURE);
+  }
+
   return 0;
 }
