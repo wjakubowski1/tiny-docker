@@ -10,6 +10,10 @@ A lightweight Linux container runtime written from scratch in C. This project ex
 
 ## Next Steps
 
+* Filesystem Isolation (`chroot`): Trap the container inside a dedicated Alpine Linux Mini Root Filesystem (`rootfs`) so it cannot access host files.
+* Mount Namespace (`CLONE_NEWNS`): Mount an isolated `/proc` virtual filesystem inside the container so tools like `ps` and `top` only report container processes.
+* Control Groups (`cgroups v2`): Restrict memory and CPU consumption via `/sys/fs/cgroup` to prevent resource exhaustion and fork bombs on the host.
+
 ## How to compile and run
 
 Use GCC to compile the source code:
